@@ -1,0 +1,32 @@
+
+
+
+@Preview(showBackground = true, group = "Haa")
+@Composable
+fun HelloWorld() {
+
+    val counterState = remember { mutableStateOf(0) }
+
+    MaxSizeColumn {
+        Text("You have clicked this button ${counterState.value} times")
+        MyClickButton(counterState)
+    }
+}
+
+@Composable
+fun MaxSizeColumn(content: @Composable ()->Unit){
+    Column(Modifier.fillMaxSize().background(Color.Red)) {
+        content.invoke()
+    }
+}
+
+@Composable
+private fun MyClickButton(counterState: MutableState<Int>) {
+    Button(onClick = { counterState.value++ },
+            modifier = Modifier.padding(start = 8.dp)
+                    .size(200.dp)) {
+        Text("Klick mich")
+    }
+}
+
+
